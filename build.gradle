@@ -1,0 +1,33 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
+}
+
+apply plugin: 'war'
+
+war {
+    baseName = 'gradle-initializr'
+    version = '1.0.0'
+}
+
+apply from: "$rootDir/gradle/heroku.gradle"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.gradle.org/gradle/libs-releases-local/'
+    }
+    maven {
+        url 'https://repo.gradle.org/gradle/libs-snapshots-local/'
+    }
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.gradle:gradle-tooling-api:4.4-20171112235945+0000'
+    compile 'org.apache.ant:ant:1.10.1'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+}

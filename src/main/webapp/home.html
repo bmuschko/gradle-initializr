@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gradle Initializr</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/gradle.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/icon/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<form id="form" action="/starter.zip" method="get" role="form">
+    <div class="container-fluid">
+        <div class="row start-header">
+            <div class="container">
+                <h1>Gradle Initializr <small>bootstrap your project now</small></h1>
+            </div>
+        </div>
+        <div class="container start-main">
+            <div class="row form-inline text-center">
+                <div class="form-group project-choice">
+                    <h2>
+                        <span class="rwd-line">
+                        <label for="type">Generate a</label>
+                        <select tabindex="1" class="form-control" id="type" name="type">
+                            <option value="basic" selected>Basic Project</option>
+                            <option value="java-application">Java Application</option>
+                            <option value="java-library">Java Library</option>
+                            <option value="groovy-application">Groovy Application</option>
+                            <option value="groovy-library">Groovy Library</option>
+                            <option value="scala-library">Scala Library</option>
+                        </select>
+                        </span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <p class="text-center">
+                    <button tabindex="12" name="generate-project" type="submit" class="btn btn-lg btn-primary" role="button">
+                        Generate Project
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
+<footer>
+    <div class="container">
+        <p>gradle-initializr is powered by <a href="https://github.com/bmuschko/gradle-initializr/">Gradle Initializr</a>
+            and <a href="https://www.heroku.com/">Heroku</a></p>
+    </div>
+</footer>
+</body>
+</html>
