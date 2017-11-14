@@ -16,6 +16,8 @@ public class AntArchiver implements Archiver {
 
     private static final String ALL_FILES_RECURSIVELY = "**";
     private static final String HIDDEN_GRADLE_DIR = ".gradle/";
+    private static final String GRADLEW_SCRIPTS = "gradlew*";
+    private static final String EXECUTABLE_FILE_MODE = "755";
 
     @Override
     public void zip(File sourceDir, File targetFile) {
@@ -27,6 +29,11 @@ public class AntArchiver implements Archiver {
         set.setIncludes(ALL_FILES_RECURSIVELY);
         set.setExcludes(HIDDEN_GRADLE_DIR);
         zip.addFileset(set);
+        ZipFileSet gradlew = new ZipFileSet();
+        gradlew.setDir(sourceDir);
+        gradlew.setIncludes(GRADLEW_SCRIPTS);
+        gradlew.setFileMode(EXECUTABLE_FILE_MODE);
+        zip.addFileset(gradlew);
         zip.setDestFile(targetFile);
         zip.execute();
     }
@@ -41,6 +48,10 @@ public class AntArchiver implements Archiver {
         set.setIncludes(ALL_FILES_RECURSIVELY);
         set.setExcludes(HIDDEN_GRADLE_DIR);
         set.setDefaultexcludes(false);
+        TarFileSet gradlew = tar.createTarFileSet();
+        gradlew.setDir(sourceDir);
+        gradlew.setIncludes(GRADLEW_SCRIPTS);
+        gradlew.setFileMode(EXECUTABLE_FILE_MODE);
         tar.setDestFile(targetFile);
         TarCompressionMethod method = new TarCompressionMethod();
         method.setValue("gzip");
