@@ -1,0 +1,31 @@
+= Gradle Initializer image:https://travis-ci.org/bmuschko/gradle-initializer.svg?branch=master["Build Status", link="https://travis-ci.org/bmuschko/gradle-initializer"]
+
+Gradle Initializer provides a web-based service for generating quickstart Gradle projects. The application provides two different interfaces: a web-based UI and an endpoint for generating projects via `curl`. Under the covers, Gradle Initializer uses the link:https://docs.gradle.org/current/userguide/embedding.html[Tooling API] to invoke the functionality of the link:https://docs.gradle.org/current/userguide/build_init_plugin.html[Build Init plugin]. A quickstart project is bundled and downloaded as ZIP or TAR file.
+
+== Using the web UI
+
+The web user interface is available by opening the URL link:https://gradle-initializr.herokuapp.com/[https://gradle-initializr.herokuapp.com/] in the browser of your choice. Simply select the options for your target project and press the "Generate" button to download the archive containing the project files.
+
+== Using curl
+
+Gradle Initializer can generate and download projects from the terminal with the help of the `curl` command. By default, the generated type is a plain Gradle project.
+
+    $ curl https://gradle-initializr.herokuapp.com/starter.zip -o starter.zip
+    $ curl https://gradle-initializr.herokuapp.com/starter.tgz -o starter.tar.gz
+
+To generate a specific project type add the `type` parameter to the command. The following example generates a Java library project:
+
+    $ curl https://gradle-initializr.herokuapp.com/starter.zip -d type=java-library -o starter.zip
+
+The table below presents the available project types:
+
+[options="header"]
+|=======
+|Type Parameter          |Project Type
+|`basic`                 |The most-basic Gradle project
+|`java-application`      |A Java application project
+|`java-library`          |A Java library project
+|`groovy-application`    |A Groovy application project
+|`groovy-library`        |A Groovy library project
+|`scala-library`         |A Scala library project
+|=======
