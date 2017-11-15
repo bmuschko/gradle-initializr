@@ -35,7 +35,7 @@ public class GradleInitializrController {
     @ResponseBody
     public ResponseEntity<byte[]> starterTgz(ProjectRequest projectRequest) {
         byte[] bytes = gradleInitializrService.createBasicTgz(projectRequest);
-        return createResponseEntity(bytes, LZW_CONTENT_TYPE, "starter.tar");
+        return createResponseEntity(bytes, LZW_CONTENT_TYPE, "starter.tar.gz");
     }
 
     private ResponseEntity<byte[]> createResponseEntity(byte[] content, String contentType, String fileName) {
