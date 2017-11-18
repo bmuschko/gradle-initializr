@@ -29,7 +29,7 @@ public class GradleInitializrController {
         switch (projectRequest.getArchive()) {
             case "zip": return "forward:/starter.zip";
             case "tgz": return "forward:/starter.tgz";
-            default: return "redirect:/error.html";
+            default: return "redirect:/error";
         }
     }
 

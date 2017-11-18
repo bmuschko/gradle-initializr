@@ -35,7 +35,7 @@ public class ToolingApiProjectGenerator implements ProjectGenerator {
         tasks.add("--type");
         tasks.add(projectRequest.getType());
 
-        if (projectRequest.getTestFramework() != null && !projectRequest.getTestFramework().isEmpty()) {
+        if (projectRequest.isJavaType() && projectRequest.getTestFramework() != null && !projectRequest.getTestFramework().isEmpty()) {
             tasks.add("--test-framework");
             tasks.add(projectRequest.getTestFramework());
         }

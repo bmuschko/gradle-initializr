@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Gradle Initializr</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/gradle.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="/icon/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" id="testFrameworkRow">
                     <label for="testFramework" class="col-sm-2 col-form-label">with test framework</label>
                     <div class="col-sm-2">
                         <select tabindex="2" class="form-control" id="testFramework" name="testFramework">
@@ -55,11 +55,13 @@
             </form>
         </div>
     </div>
-<footer>
-    <div class="container">
-        <p>gradle-initializr is powered by <a href="https://github.com/bmuschko/gradle-initializr/">Gradle Initializr</a>
-            and <a href="https://www.heroku.com/">Heroku</a></p>
-    </div>
-</footer>
+    <footer>
+        <div class="container">
+            <p>gradle-initializr is powered by <a href="https://github.com/bmuschko/gradle-initializr/">Gradle Initializr</a>
+                and <a href="https://www.heroku.com/">Heroku</a></p>
+        </div>
+    </footer>
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/gradle.js"></script>
 </body>
 </html>

@@ -38,4 +38,8 @@ public class ProjectRequest {
     public void setArchive(String archive) {
         this.archive = archive;
     }
+
+    public boolean isJavaType() {
+        return "java-application".equals(type) || "java-library".equals(type);
+    }
 }
