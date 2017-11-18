@@ -5,6 +5,7 @@ public class ProjectRequest {
     private String type;
     private String testFramework;
     private String gradleVersion;
+    private String archive;
 
     public String getType() {
         return type;
@@ -28,5 +29,13 @@ public class ProjectRequest {
 
     public void setGradleVersion(String gradleVersion) {
         this.gradleVersion = gradleVersion;
+    }
+
+    public String getArchive() {
+        return archive;
+    }
+
+    public void setArchive(String archive) {
+        this.archive = archive;
     }
 }

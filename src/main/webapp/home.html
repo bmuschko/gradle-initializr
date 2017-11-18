@@ -8,48 +8,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<form id="form" action="/starter.zip" method="get" role="form">
     <div class="container-fluid">
         <div class="row start-header">
             <div class="container">
                 <h1>Gradle Initializr <small>bootstrap your project now</small></h1>
             </div>
         </div>
-        <div class="container start-main">
-            <div class="row form-inline text-center">
-                <div class="form-group project-choice">
-                    <h2>
-                        <span class="rwd-line">
-                            <label for="type">Generate a</label>
-                            <select tabindex="1" class="form-control" id="type" name="type">
-                                <option value="basic" selected>Basic Project</option>
-                                <option value="java-application">Java Application</option>
-                                <option value="java-library">Java Library</option>
-                                <option value="groovy-application">Groovy Application</option>
-                                <option value="groovy-library">Groovy Library</option>
-                                <option value="scala-library">Scala Library</option>
-                            </select>
-                            <label for="testFramework">with test framework</label>
-                            <select tabindex="2" class="form-control" id="testFramework" name="testFramework">
-                                <option value="" selected>JUnit</option>
-                                <option value="testng">TestNG</option>
-                                <option value="spock">Spock</option>
-                            </select>
-                        </span>
-                    </h2>
-                </div>
-            </div>
 
-            <div class="row">
-                <p class="text-center">
-                    <button tabindex="12" name="generate-project" type="submit" class="btn btn-lg btn-primary" role="button">
-                        Generate
-                    </button>
-                </p>
-            </div>
+        <div class="container">
+            <form id="form" action="/starter" method="get" role="form">
+                <div class="form-group row">
+                    <label for="type" class="col-sm-2 col-form-label">Generate a</label>
+                    <div class="col-sm-2">
+                        <select tabindex="1" class="form-control" id="type" name="type">
+                            <option value="basic" selected>Basic Project</option>
+                            <option value="java-application">Java Application</option>
+                            <option value="java-library">Java Library</option>
+                            <option value="groovy-application">Groovy Application</option>
+                            <option value="groovy-library">Groovy Library</option>
+                            <option value="scala-library">Scala Library</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="testFramework" class="col-sm-2 col-form-label">with test framework</label>
+                    <div class="col-sm-2">
+                        <select tabindex="2" class="form-control" id="testFramework" name="testFramework">
+                            <option value="" selected>JUnit</option>
+                            <option value="testng">TestNG</option>
+                            <option value="spock">Spock</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="archive" class="col-sm-2 col-form-label">Archive format</label>
+                    <div class="col-sm-2">
+                        <select tabindex="3" class="form-control" id="archive" name="archive">
+                            <option value="zip" selected>zip</option>
+                            <option value="tgz">tar.gz</option>
+                        </select>
+                    </div>
+                </div>
+                <button tabindex="4" name="generate-project" type="submit" class="btn btn-lg btn-primary" role="button">
+                    Generate
+                </button>
+            </form>
         </div>
     </div>
-</form>
 <footer>
     <div class="container">
         <p>gradle-initializr is powered by <a href="https://github.com/bmuschko/gradle-initializr/">Gradle Initializr</a>

@@ -24,6 +24,15 @@ public class GradleInitializrController {
         return "forward:/home.html";
     }
 
+    @RequestMapping("/starter")
+    public String starter(ProjectRequest projectRequest) {
+        switch (projectRequest.getArchive()) {
+            case "zip": return "forward:/starter.zip";
+            case "tgz": return "forward:/starter.tgz";
+            default: return "redirect:/error.html";
+        }
+    }
+
     @RequestMapping("/starter.zip")
     @ResponseBody
     public ResponseEntity<byte[]> starterZip(ProjectRequest projectRequest) {
