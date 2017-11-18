@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    toggleTestFrameworkVisibility(false);
-
     $('#type').change(function () {
         var typeValue = $(this).val();
         if (typeValue === 'java-application' || typeValue === 'java-library') {
