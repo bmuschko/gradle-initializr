@@ -2,6 +2,8 @@ package com.bmuschko.gradle.initializr.service;
 
 import com.bmuschko.gradle.initializr.archive.Archiver;
 import com.bmuschko.gradle.initializr.generator.ProjectGenerator;
+import com.bmuschko.gradle.initializr.metadata.GradleVersionReader;
+import com.bmuschko.gradle.initializr.metadata.GradleVersion;
 import com.bmuschko.gradle.initializr.model.ProjectRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,18 +17,22 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Function;
 
 @Service
 public class DefaultGradleInitializrService implements GradleInitializrService {
 
+    private static final GradleVersion VERSION_SUPPORTS_TOOLING_API_IN_UBERJAR = new GradleVersion(4, 4);
     private final Logger logger = LoggerFactory.getLogger(DefaultGradleInitializrService.class);
     private final ProjectGenerator projectGenerator;
     private final Archiver archiver;
+    private final GradleVersionReader gradleVersionReader;
 
-    public DefaultGradleInitializrService(@Autowired ProjectGenerator projectGenerator, @Autowired Archiver archiver) {
+    public DefaultGradleInitializrService(@Autowired ProjectGenerator projectGenerator, @Autowired Archiver archiver, @Autowired GradleVersionReader gradleVersionReader) {
         this.projectGenerator = projectGenerator;
         this.archiver = archiver;
+        this.gradleVersionReader = gradleVersionReader;
     }
 
     public byte[] createBasicZip(ProjectRequest projectRequest) {
@@ -84,5 +90,10 @@ public class DefaultGradleInitializrService implements GradleInitializrService {
 
     private byte[] fileToByteArray(File file) throws IOException {
         return StreamUtils.copyToByteArray(new FileInputStream(file));
+    }
+
+    @Override
+    public List<GradleVersion> getGradleVersions() {
+        return gradleVersionReader.getFinalVersionsGreaterEquals(VERSION_SUPPORTS_TOOLING_API_IN_UBERJAR);
     }
 }
