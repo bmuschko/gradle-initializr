@@ -23,7 +23,7 @@ import java.util.function.Function;
 @Service
 public class DefaultGradleInitializrService implements GradleInitializrService {
 
-    private static final GradleVersion MIN_SUPPORTED_GRADLE_VERSION = new GradleVersion(4, 0);
+    private static final GradleVersion VERSION_SUPPORTS_TOOLING_API_IN_UBERJAR = new GradleVersion(4, 4);
     private final Logger logger = LoggerFactory.getLogger(DefaultGradleInitializrService.class);
     private final ProjectGenerator projectGenerator;
     private final Archiver archiver;
@@ -94,6 +94,6 @@ public class DefaultGradleInitializrService implements GradleInitializrService {
 
     @Override
     public List<GradleVersion> getGradleVersions() {
-        return gradleVersionReader.getFinalVersionsGreaterEquals(MIN_SUPPORTED_GRADLE_VERSION);
+        return gradleVersionReader.getFinalVersionsGreaterEquals(VERSION_SUPPORTS_TOOLING_API_IN_UBERJAR);
     }
 }
