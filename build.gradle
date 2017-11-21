@@ -28,7 +28,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-cache'
     compile 'org.springframework.boot:spring-boot-starter-mustache'
-    compile 'org.gradle:gradle-tooling-api:4.4-20171112235945+0000'
+    compile 'org.gradle:gradle-tooling-api:4.4-rc-1'
     compile 'org.apache.ant:ant:1.10.1'
     compile 'org.json:json'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
