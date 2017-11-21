@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 @Controller
 public class GradleInitializrController {
 
@@ -20,8 +22,9 @@ public class GradleInitializrController {
     }
 
     @RequestMapping("/")
-    public String home() {
-        return "forward:/home.html";
+    public String home(Map<String, Object> model) {
+        model.put("gradleVersions", gradleInitializrService.getGradleVersions());
+        return "home";
     }
 
     @RequestMapping("/starter")

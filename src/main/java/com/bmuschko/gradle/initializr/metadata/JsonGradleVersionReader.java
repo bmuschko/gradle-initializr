@@ -2,8 +2,11 @@ package com.bmuschko.gradle.initializr.metadata;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,6 +16,7 @@ import java.util.List;
 @Component
 public class JsonGradleVersionReader implements GradleVersionReader {
 
+    private final Logger logger = LoggerFactory.getLogger(JsonGradleVersionReader.class);
     private static final String GRADLE_ALL_VERSIONS_URL = "https://services.gradle.org/versions/all";
     private static final String VERSION_ATTRIBUTE = "version";
     private static final String SNAPSHOT_ATTRIBUTE = "snapshot";
@@ -26,7 +30,12 @@ public class JsonGradleVersionReader implements GradleVersionReader {
     }
 
     @Override
+    @Cacheable("gradleVersions")
     public List<GradleVersion> getFinalVersionsGreaterEquals(GradleVersion minVersion) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Retrieving Gradle versions from services.gradle.org");
+        }
+
         List<GradleVersion> allVersions = new ArrayList<>();
         JSONArray versions = new JSONArray(restTemplate.getForObject(GRADLE_ALL_VERSIONS_URL, String.class));
 
