@@ -35,11 +35,15 @@ public class ToolingApiProjectGenerator implements ProjectGenerator {
         tasks.add("--type");
         tasks.add(projectRequest.getType());
 
-        if (projectRequest.isJavaType() && projectRequest.getTestFramework() != null && !projectRequest.getTestFramework().isEmpty()) {
+        if (supportsTestFrameworkOption(projectRequest)) {
             tasks.add("--test-framework");
             tasks.add(projectRequest.getTestFramework());
         }
 
         return tasks.stream().toArray(String[]::new);
+    }
+
+    private boolean supportsTestFrameworkOption(ProjectRequest projectRequest) {
+        return projectRequest.isJavaType() && projectRequest.getTestFramework() != null && !projectRequest.getTestFramework().isEmpty();
     }
 }
