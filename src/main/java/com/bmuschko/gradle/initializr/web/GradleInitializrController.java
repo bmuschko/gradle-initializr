@@ -2,7 +2,6 @@ package com.bmuschko.gradle.initializr.web;
 
 import com.bmuschko.gradle.initializr.model.ProjectRequest;
 import com.bmuschko.gradle.initializr.service.GradleInitializrService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,7 @@ public class GradleInitializrController {
     private static final String LZW_CONTENT_TYPE = "application/x-compress";
     private final GradleInitializrService gradleInitializrService;
 
-    public GradleInitializrController(@Autowired GradleInitializrService gradleInitializrService) {
+    public GradleInitializrController(GradleInitializrService gradleInitializrService) {
         this.gradleInitializrService = gradleInitializrService;
     }
 

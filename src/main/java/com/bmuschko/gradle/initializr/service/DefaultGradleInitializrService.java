@@ -2,12 +2,11 @@ package com.bmuschko.gradle.initializr.service;
 
 import com.bmuschko.gradle.initializr.archive.Archiver;
 import com.bmuschko.gradle.initializr.generator.ProjectGenerator;
-import com.bmuschko.gradle.initializr.metadata.GradleVersionReader;
 import com.bmuschko.gradle.initializr.metadata.GradleVersion;
+import com.bmuschko.gradle.initializr.metadata.GradleVersionReader;
 import com.bmuschko.gradle.initializr.model.ProjectRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StreamUtils;
@@ -29,7 +28,7 @@ public class DefaultGradleInitializrService implements GradleInitializrService {
     private final Archiver archiver;
     private final GradleVersionReader gradleVersionReader;
 
-    public DefaultGradleInitializrService(@Autowired ProjectGenerator projectGenerator, @Autowired Archiver archiver, @Autowired GradleVersionReader gradleVersionReader) {
+    public DefaultGradleInitializrService(ProjectGenerator projectGenerator, Archiver archiver, GradleVersionReader gradleVersionReader) {
         this.projectGenerator = projectGenerator;
         this.archiver = archiver;
         this.gradleVersionReader = gradleVersionReader;

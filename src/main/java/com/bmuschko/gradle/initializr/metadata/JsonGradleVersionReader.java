@@ -2,9 +2,6 @@ package com.bmuschko.gradle.initializr.metadata;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +18,7 @@ public class JsonGradleVersionReader implements GradleVersionReader {
     private static final String MILESTONE_FOR_ATTRIBUTE = "milestoneFor";
     private final RemoteGradleVersionResolver remoteGradleVersionResolver;
 
-    public JsonGradleVersionReader(@Autowired RemoteGradleVersionResolver remoteGradleVersionResolver) {
+    public JsonGradleVersionReader(RemoteGradleVersionResolver remoteGradleVersionResolver) {
         this.remoteGradleVersionResolver = remoteGradleVersionResolver;
     }
 

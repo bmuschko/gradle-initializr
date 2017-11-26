@@ -2,7 +2,6 @@ package com.bmuschko.gradle.initializr.metadata;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +13,7 @@ public class DefaultRemoteGradleVersionResolver implements RemoteGradleVersionRe
     private final Logger logger = LoggerFactory.getLogger(DefaultRemoteGradleVersionResolver.class);
     private final RestTemplate restTemplate;
 
-    public DefaultRemoteGradleVersionResolver(@Autowired RestTemplateBuilder restTemplateBuilder) {
+    public DefaultRemoteGradleVersionResolver(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
