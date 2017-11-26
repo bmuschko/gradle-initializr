@@ -7,12 +7,12 @@ public class GradleVersion implements Comparable<GradleVersion> {
     private final Integer patch;
 
     public GradleVersion(Integer major, Integer minor) {
-        this.major = major;
-        this.minor = minor;
-        this.patch = null;
+        this(major, minor, null);
     }
 
     public GradleVersion(Integer major, Integer minor, Integer patch) {
+        assert major != null : "major version attribute may not be null";
+        assert minor != null : "minor version attribute may not be null";
         this.major = major;
         this.minor = minor;
         this.patch = patch;
