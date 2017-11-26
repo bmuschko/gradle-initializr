@@ -1,8 +1,8 @@
 plugins {
+    id 'groovy'
+    id 'war'
     id 'org.springframework.boot' version '1.5.8.RELEASE'
 }
-
-apply plugin: 'war'
 
 war {
     baseName = 'gradle-initializr'
@@ -19,9 +19,6 @@ repositories {
     maven {
         url 'https://repo.gradle.org/gradle/libs-releases-local/'
     }
-    maven {
-        url 'https://repo.gradle.org/gradle/libs-snapshots-local/'
-    }
 }
 
 dependencies {
@@ -31,6 +28,8 @@ dependencies {
     compile 'org.gradle:gradle-tooling-api:4.4-rc-2'
     compile 'org.apache.ant:ant:1.10.1'
     compile 'org.json:json'
+    testCompile 'org.codehaus.groovy:groovy:2.4.13'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
 }
