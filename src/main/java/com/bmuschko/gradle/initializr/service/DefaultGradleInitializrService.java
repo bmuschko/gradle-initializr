@@ -34,11 +34,11 @@ public class DefaultGradleInitializrService implements GradleInitializrService {
         this.gradleVersionReader = gradleVersionReader;
     }
 
-    public byte[] createBasicZip(ProjectRequest projectRequest) {
+    public byte[] createZip(ProjectRequest projectRequest) {
         return createDownloadFile((tmpDir) -> createZip(tmpDir, projectRequest));
     }
 
-    public byte[] createBasicTgz(ProjectRequest projectRequest) {
+    public byte[] createTgz(ProjectRequest projectRequest) {
         return createDownloadFile((tmpDir) -> createTar(tmpDir, projectRequest));
     }
 

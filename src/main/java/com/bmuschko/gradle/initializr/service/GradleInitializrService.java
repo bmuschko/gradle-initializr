@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GradleInitializrService {
 
-    byte[] createBasicZip(ProjectRequest projectRequest);
-    byte[] createBasicTgz(ProjectRequest projectRequest);
+    byte[] createZip(ProjectRequest projectRequest);
+    byte[] createTgz(ProjectRequest projectRequest);
     List<GradleVersion> getGradleVersions();
 }

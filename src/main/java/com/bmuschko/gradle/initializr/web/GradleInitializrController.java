@@ -38,14 +38,14 @@ public class GradleInitializrController {
     @RequestMapping("/starter.zip")
     @ResponseBody
     public ResponseEntity<byte[]> starterZip(ProjectRequest projectRequest) {
-        byte[] bytes = gradleInitializrService.createBasicZip(projectRequest);
+        byte[] bytes = gradleInitializrService.createZip(projectRequest);
         return createResponseEntity(bytes, ZIP_CONTENT_TYPE, "starter.zip");
     }
 
     @RequestMapping(value = "/starter.tgz", produces = LZW_CONTENT_TYPE)
     @ResponseBody
     public ResponseEntity<byte[]> starterTgz(ProjectRequest projectRequest) {
-        byte[] bytes = gradleInitializrService.createBasicTgz(projectRequest);
+        byte[] bytes = gradleInitializrService.createTgz(projectRequest);
         return createResponseEntity(bytes, LZW_CONTENT_TYPE, "starter.tar.gz");
     }
 

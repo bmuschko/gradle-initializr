@@ -42,4 +42,28 @@ public class ProjectRequest {
     public boolean isJavaType() {
         return "java-application".equals(type) || "java-library".equals(type);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProjectRequest that = (ProjectRequest) o;
+
+        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (testFramework != null ? !testFramework.equals(that.testFramework) : that.testFramework != null)
+            return false;
+        if (gradleVersion != null ? !gradleVersion.equals(that.gradleVersion) : that.gradleVersion != null)
+            return false;
+        return archive != null ? archive.equals(that.archive) : that.archive == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + (testFramework != null ? testFramework.hashCode() : 0);
+        result = 31 * result + (gradleVersion != null ? gradleVersion.hashCode() : 0);
+        result = 31 * result + (archive != null ? archive.hashCode() : 0);
+        return result;
+    }
 }
