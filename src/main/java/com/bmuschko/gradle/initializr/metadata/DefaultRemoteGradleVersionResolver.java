@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class DefaultRemoteGradleVersionResolver implements RemoteGradleVersionResolver {
 
-    private static final String GRADLE_ALL_VERSIONS_URL = "https://services.gradle.org/versions/all";
+    public static final String GRADLE_ALL_VERSIONS_URL = "https://services.gradle.org/versions/all";
     private final Logger logger = LoggerFactory.getLogger(DefaultRemoteGradleVersionResolver.class);
     private final RestTemplate restTemplate;
 
