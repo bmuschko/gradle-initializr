@@ -30,34 +30,34 @@ class GradleInitializrControllerIntegrationTest {
     void "can forward to home page"() {
         def gradleVersions = [new GradleVersion(1, 2), new GradleVersion(1, 3)]
         given(gradleInitializrService.getGradleVersions()).willReturn(gradleVersions)
-        mvc.perform(get("/"))
+        mvc.perform(get('/'))
             .andExpect(status().isOk())
-            .andExpect(model().attribute("gradleVersions", gradleVersions))
-            .andExpect(view().name("home"))
+            .andExpect(model().attribute('gradleVersions', gradleVersions))
+            .andExpect(view().name('home'))
         verify(gradleInitializrService, times(1)).getGradleVersions()
     }
 
     @Test
     void "can forward to starter ZIP archive URL"() {
-        mvc.perform(get("/starter").param("archive", "zip"))
+        mvc.perform(get('/starter').param('archive', 'zip'))
             .andExpect(status().isOk())
-            .andExpect(forwardedUrl("/starter.zip"))
+            .andExpect(forwardedUrl('/starter.zip'))
         verifyNoMoreInteractions(gradleInitializrService)
     }
 
     @Test
     void "can forward to starter TAR archive URL"() {
-        mvc.perform(get("/starter").param("archive", "tgz"))
+        mvc.perform(get('/starter').param('archive', 'tgz'))
                 .andExpect(status().isOk())
-                .andExpect(forwardedUrl("/starter.tgz"))
+                .andExpect(forwardedUrl('/starter.tgz'))
         verifyNoMoreInteractions(gradleInitializrService)
     }
 
     @Test
     void "redirect to error page if archive type is other than zip or tgz"() {
-        mvc.perform(get("/starter").param("archive", "unknown"))
+        mvc.perform(get('/starter').param('archive', 'unknown'))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/error"))
+                .andExpect(redirectedUrl('/error'))
         verifyNoMoreInteractions(gradleInitializrService)
     }
 
@@ -65,10 +65,10 @@ class GradleInitializrControllerIntegrationTest {
     void "can generate ZIP file and send in response"() {
         def projectRequest = new ProjectRequest()
         projectRequest.archive = 'zip'
-        mvc.perform(get("/starter.zip").param("archive", "zip"))
+        mvc.perform(get('/starter.zip').param('archive', 'zip'))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(GradleInitializrController.ZIP_CONTENT_TYPE))
-                .andExpect(header().string("Content-Disposition", 'attachment; filename="starter.zip"'))
+                .andExpect(header().string('Content-Disposition', 'attachment; filename="starter.zip"'))
         verify(gradleInitializrService, times(1)).createZip(projectRequest)
     }
 
@@ -76,10 +76,10 @@ class GradleInitializrControllerIntegrationTest {
     void "can generate TAR file and send in response"() {
         def projectRequest = new ProjectRequest()
         projectRequest.archive = 'tgz'
-        mvc.perform(get("/starter.tgz").param("archive", "tgz"))
+        mvc.perform(get('/starter.tgz').param('archive', 'tgz'))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(GradleInitializrController.LZW_CONTENT_TYPE))
-                .andExpect(header().string("Content-Disposition", 'attachment; filename="starter.tar.gz"'))
+                .andExpect(header().string('Content-Disposition', 'attachment; filename="starter.tar.gz"'))
         verify(gradleInitializrService, times(1)).createTgz(projectRequest)
     }
 }
