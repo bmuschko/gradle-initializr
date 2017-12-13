@@ -4,18 +4,18 @@ Gradle Initializer provides a web-based service for generating quickstart Gradle
 
 == Using the web UI
 
-The web user interface is available by opening the URL link:https://gradle-initializr.herokuapp.com/[https://gradle-initializr.herokuapp.com/] in the browser of your choice. Simply select the options for your target project and press the "Generate" button to download the archive containing the project files.
+The web user interface is available by opening the URL link:https://gradle-initializr.cleverapps.io/[https://gradle-initializr.cleverapps.io/] in the browser of your choice. Simply select the options for your target project and press the "Generate" button to download the archive containing the project files.
 
 == Using curl
 
 Gradle Initializer can generate and download projects from the terminal with the help of the `curl` command. By default, the generated type is a plain Gradle project.
 
-    $ curl https://gradle-initializr.herokuapp.com/starter.zip -o starter.zip
-    $ curl https://gradle-initializr.herokuapp.com/starter.tgz -o starter.tar.gz
+    $ curl https://gradle-initializr.cleverapps.io/starter.zip -o starter.zip
+    $ curl https://gradle-initializr.cleverapps.io/starter.tgz -o starter.tar.gz
 
 To generate a specific project type add the `type` parameter to the command. The following example generates a Java library project:
 
-    $ curl https://gradle-initializr.herokuapp.com/starter.zip -d type=java-library -o starter.zip
+    $ curl https://gradle-initializr.cleverapps.io/starter.zip -d type=java-library -o starter.zip
 
 The table below presents the available project types:
 
