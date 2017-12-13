@@ -13,19 +13,28 @@ Gradle Initializer can generate and download projects from the terminal with the
     $ curl https://gradle-initializr.cleverapps.io/starter.zip -o starter.zip
     $ curl https://gradle-initializr.cleverapps.io/starter.tgz -o starter.tar.gz
 
-To generate a specific project type add the `type` parameter to the command. The following example generates a Java library project:
+To generate a specific project type add the `type` parameter to the command. The following example generates a Java library project with the test framework TestNG:
 
-    $ curl https://gradle-initializr.cleverapps.io/starter.zip -d type=java-library -o starter.zip
+    $ curl https://gradle-initializr.cleverapps.io/starter.zip -d type=java-library -d testFramework=testng -o starter.zip
 
-The table below presents the available project types:
+The table below presents the available project types by providing the parameter `type`. The parameter is mandatory.
 
 [options="header"]
 |=======
-|Type Parameter          |Project Type
-|`basic`                 |The most-basic Gradle project
-|`java-application`      |A Java application project
-|`java-library`          |A Java library project
-|`groovy-application`    |A Groovy application project
-|`groovy-library`        |A Groovy library project
-|`scala-library`         |A Scala library project
+|Value                |Description
+|`basic`              |The most-basic Gradle project
+|`java-application`   |A Java application project
+|`java-library`       |A Java library project
+|`groovy-application` |A Groovy application project
+|`groovy-library`     |A Groovy library project
+|`scala-library`      |A Scala library project
+|=======
+
+The following test frameworks can be selected for the project types `java-application` and `java-library` by providing the parameter `testFramework`. The parameter is optional.
+
+[options="header"]
+|=======
+|Value    |Description
+|`testng` |link:http://testng.org/[TestNG]
+|`spock`  |link:http://spockframework.org/[Spock framework]
 |=======
