@@ -30,7 +30,7 @@ The table below presents the available project types by providing the parameter 
 |`scala-library`      |A Scala library project
 |=======
 
-The following test frameworks can be selected for the project types `java-application` and `java-library` by providing the parameter `testFramework`. The parameter is optional.
+The following test frameworks can be selected for the project types `java-application` and `java-library` by providing the parameter `testFramework`. The parameter is optional. The test framework JUnit 4 is used if the parameter isn't provided.
 
 [options="header"]
 |=======
