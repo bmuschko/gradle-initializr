@@ -25,7 +25,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-cache'
     compile 'org.springframework.boot:spring-boot-starter-mustache'
-    compile 'org.gradle:gradle-tooling-api:4.4'
+    compile 'org.gradle:gradle-tooling-api:4.4.1'
     compile 'org.apache.ant:ant:1.10.1'
     compile 'org.json:json'
     runtime 'com.github.ben-manes.caffeine:caffeine'
