@@ -4,13 +4,9 @@ plugins {
     id 'org.springframework.boot' version '1.5.9.RELEASE'
 }
 
-war {
-    baseName = 'gradle-initializr'
-    version = '1.0.0'
-}
-
 apply from: "$rootDir/gradle/integration-test.gradle"
 
+version = '1.0.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -25,7 +21,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-cache'
     compile 'org.springframework.boot:spring-boot-starter-mustache'
-    compile 'org.gradle:gradle-tooling-api:4.4.1'
+    compile 'org.gradle:gradle-tooling-api:4.5'
     compile 'org.apache.ant:ant:1.10.1'
     compile 'org.json:json'
     runtime 'com.github.ben-manes.caffeine:caffeine'
