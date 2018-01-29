@@ -30,6 +30,15 @@ class JsonGradleVersionReaderTest extends Specification {
         GRADLE_4_6 | []
     }
 
+    def "can get current Gradle version"() {
+        when:
+        def latestFinalVersion = jsonGradleVersionReader.getLatestFinalVersion()
+
+        then:
+        remoteGradleVersionResolver.latestFinalVersion >> getLatestVersionJson()
+        latestFinalVersion == GRADLE_4_5
+    }
+
     static String getNoFinalVersionJson() {
         """
             [
@@ -60,6 +69,24 @@ class JsonGradleVersionReaderTest extends Specification {
                   checksumUrl:"https://services.gradle.org/distributions/gradle-4.4-rc-2-bin.zip.sha256"
                }
             ]
+        """
+    }
+
+    static String getLatestVersionJson() {
+        """
+            {
+              "version" : "4.5",
+              "buildTime" : "20180124170452+0000",
+              "current" : true,
+              "snapshot" : false,
+              "nightly" : false,
+              "activeRc" : false,
+              "rcFor" : "",
+              "milestoneFor" : "",
+              "broken" : false,
+              "downloadUrl" : "https://services.gradle.org/distributions/gradle-4.5-bin.zip",
+              "checksumUrl" : "https://services.gradle.org/distributions/gradle-4.5-bin.zip.sha256"
+            }
         """
     }
 }

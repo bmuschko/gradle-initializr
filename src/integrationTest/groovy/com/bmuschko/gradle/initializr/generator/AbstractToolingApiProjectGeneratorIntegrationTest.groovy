@@ -7,7 +7,7 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
-class ToolingApiProjectGeneratorIntegrationTest extends Specification {
+abstract class AbstractToolingApiProjectGeneratorIntegrationTest extends Specification {
 
     @Rule
     TemporaryFolder testProjectDir = new TemporaryFolder()
@@ -20,12 +20,13 @@ class ToolingApiProjectGeneratorIntegrationTest extends Specification {
         given:
         def projectRequest = new ProjectRequest()
         projectRequest.type = type
+        projectRequest.dsl = getDsl()
 
         when:
         toolingApiProjectGenerator.generate(testProjectDir.root, projectRequest)
 
         then:
-        assertGeneratedGradleFiles()
+        assertGeneratedFiles()
 
         where:
         type << ['basic', 'java-library', 'java-application', 'groovy-application', 'groovy-library', 'scala-library']
@@ -37,12 +38,13 @@ class ToolingApiProjectGeneratorIntegrationTest extends Specification {
         def projectRequest = new ProjectRequest()
         projectRequest.type = type
         projectRequest.testFramework = testFramework
+        projectRequest.dsl = getDsl()
 
         when:
         toolingApiProjectGenerator.generate(testProjectDir.root, projectRequest)
 
         then:
-        assertGeneratedGradleFiles()
+        assertGeneratedFiles()
 
         where:
         [type, testFramework] << [['java-library', 'java-application'], ['testng', 'spock']].combinations()
@@ -54,20 +56,22 @@ class ToolingApiProjectGeneratorIntegrationTest extends Specification {
         def projectRequest = new ProjectRequest()
         projectRequest.type = type
         projectRequest.testFramework = 'spock'
+        projectRequest.dsl = getDsl()
 
         when:
         toolingApiProjectGenerator.generate(testProjectDir.root, projectRequest)
 
         then:
-        assertGeneratedGradleFiles()
+        assertGeneratedFiles()
 
         where:
         type << ['basic', 'groovy-application', 'groovy-library', 'scala-library']
     }
 
-    private void assertGeneratedGradleFiles() {
-        assert new File(testProjectDir.root, 'build.gradle').isFile()
-        assert new File(testProjectDir.root, 'settings.gradle').isFile()
+    abstract String getDsl()
+    abstract void assertGeneratedFiles()
+
+    void assertGradleDirectory() {
         assert new File(testProjectDir.root, 'gradle').isDirectory()
     }
 }

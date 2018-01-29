@@ -16,13 +16,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 @Service
 public class DefaultGradleInitializrService implements GradleInitializrService {
 
-    private static final GradleVersion VERSION_SUPPORTS_TOOLING_API_IN_UBERJAR = new GradleVersion(4, 4);
     private final Logger logger = LoggerFactory.getLogger(DefaultGradleInitializrService.class);
     private final ProjectGenerator projectGenerator;
     private final Archiver archiver;
@@ -93,6 +93,8 @@ public class DefaultGradleInitializrService implements GradleInitializrService {
 
     @Override
     public List<GradleVersion> getGradleVersions() {
-        return gradleVersionReader.getFinalVersionsGreaterEquals(VERSION_SUPPORTS_TOOLING_API_IN_UBERJAR);
+        List<GradleVersion> gradleVersions = new ArrayList<>();
+        gradleVersions.add(gradleVersionReader.getLatestFinalVersion());
+        return gradleVersions;
     }
 }

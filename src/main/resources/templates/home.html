@@ -40,10 +40,19 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group row" id="dslRow">
+                    <label for="archive" class="col-sm-2 col-form-label">with DSL</label>
+                    <div class="col-sm-2">
+                        <select tabindex="3" class="form-control" id="dsl" name="dsl">
+                            <option value="" selected>Groovy</option>
+                            <option value="kotlin">Kotlin</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="gradleVersion" class="col-sm-2 col-form-label">with Gradle version</label>
                     <div class="col-sm-2">
-                        <select tabindex="3" class="form-control" id="gradleVersion" name="gradleVersion">
+                        <select tabindex="4" class="form-control" id="gradleVersion" name="gradleVersion">
                             {{#gradleVersions}}
                             <option value="{{toString}}">{{toString}}</option>
                             {{/gradleVersions}}
@@ -53,13 +62,13 @@
                 <div class="form-group row">
                     <label for="archive" class="col-sm-2 col-form-label">and archive format</label>
                     <div class="col-sm-2">
-                        <select tabindex="4" class="form-control" id="archive" name="archive">
+                        <select tabindex="5" class="form-control" id="archive" name="archive">
                             <option value="zip" selected>zip</option>
                             <option value="tgz">tar.gz</option>
                         </select>
                     </div>
                 </div>
-                <button tabindex="5" name="generate-project" type="submit" class="btn-lg btn-primary" role="button">
+                <button tabindex="6" name="generate-project" type="submit" class="btn-lg btn-primary" role="button">
                     Generate
                 </button>
             </form>

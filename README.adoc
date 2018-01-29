@@ -8,10 +8,23 @@ The web user interface is available by opening the URL link:https://gradle-initi
 
 == Using curl
 
-Gradle Initializer can generate and download projects from the terminal with the help of the `curl` command. By default, the generated type is a plain Gradle project.
+Gradle Initializer can generate and download projects from the terminal with the help of the `curl` command. By default, the generated type is a plain Gradle project using the latest, packaged version of the Gradle Wrapper.
 
     $ curl https://gradle-initializr.cleverapps.io/starter.zip -o starter.zip
     $ curl https://gradle-initializr.cleverapps.io/starter.tgz -o starter.tar.gz
+
+Additionally, the following parameters can be specified.
+
+[options="header"]
+|=======
+|Parameter       |Description
+|`type`          |The type of project to generate
+|`dsl`           |The DSL to use for the generate project
+|`gradleVersion` |The Gradle version used for the Wrapper
+|`testFramework` |The test framework used for some of the project types
+|=======
+
+=== Specifying the project type
 
 To generate a specific project type add the `type` parameter to the command. The following example generates a Java library project with the test framework TestNG:
 
@@ -29,6 +42,23 @@ The table below presents the available project types by providing the parameter 
 |`groovy-library`     |A Groovy library project
 |`scala-library`      |A Scala library project
 |=======
+
+=== Specifying the project DSL
+
+The generated project can used two different DSLs starting with Gradle version 4.5. Use the parameter `dsl` to set the DSL.
+
+[options="header"]
+|=======
+|Value    |Description
+|`groovy` |The project is generated with the Groovy DSL
+|`kotlin` |The project is generated with the Kotlin DSL
+|=======
+
+=== Specifying the Wrapper version
+
+The generated project provides a Gradle Wrapper with a specific version. The version can be provided with the parameter `gradleVersion`. The minimum supported version of the Gradle Wrapper is 4.4.
+
+=== Specifying the test framework
 
 The following test frameworks can be selected for the project types `java-application` and `java-library` by providing the parameter `testFramework`. The parameter is optional. The test framework JUnit 4 is used if the parameter isn't provided.
 

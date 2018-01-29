@@ -9,7 +9,9 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class DefaultRemoteGradleVersionResolver implements RemoteGradleVersionResolver {
 
-    public static final String GRADLE_ALL_VERSIONS_URL = "https://services.gradle.org/versions/all";
+    public static final String BASE_URL = "https://services.gradle.org/versions/";
+    public static final String GRADLE_ALL_VERSIONS_URL = BASE_URL + "all";
+    public static final String GRADLE_CURRENT_VERSION_URL = BASE_URL + "current";
     private final Logger logger = LoggerFactory.getLogger(DefaultRemoteGradleVersionResolver.class);
     private final RestTemplate restTemplate;
 
@@ -20,9 +22,18 @@ public class DefaultRemoteGradleVersionResolver implements RemoteGradleVersionRe
     @Override
     public String getAllVersions() {
         if (logger.isDebugEnabled()) {
-            logger.debug("Retrieving Gradle versions from services.gradle.org");
+            logger.debug("Retrieving all Gradle versions via {}", GRADLE_ALL_VERSIONS_URL);
         }
 
         return restTemplate.getForObject(GRADLE_ALL_VERSIONS_URL, String.class);
+    }
+
+    @Override
+    public String getLatestFinalVersion() {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Retrieving latest final Gradle version via {}", GRADLE_CURRENT_VERSION_URL);
+        }
+
+        return restTemplate.getForObject(GRADLE_CURRENT_VERSION_URL, String.class);
     }
 }

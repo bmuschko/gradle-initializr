@@ -43,6 +43,13 @@ public class JsonGradleVersionReader implements GradleVersionReader {
         return allVersions;
     }
 
+    @Override
+    @Cacheable(cacheNames = "latestFinalGradleVersion", sync = true)
+    public GradleVersion getLatestFinalVersion() {
+        JSONObject version = new JSONObject(remoteGradleVersionResolver.getLatestFinalVersion());
+        return new GradleVersion(version.getString(VERSION_ATTRIBUTE));
+    }
+
     private boolean isFinalVersion(JSONObject versionAttributes) {
         boolean snapshot = versionAttributes.getBoolean(SNAPSHOT_ATTRIBUTE);
         boolean nightly = versionAttributes.getBoolean(NIGHTLY_ATTRIBUTE);

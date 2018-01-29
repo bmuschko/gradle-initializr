@@ -3,6 +3,7 @@ package com.bmuschko.gradle.initializr.model;
 public class ProjectRequest {
 
     private String type;
+    private String dsl;
     private String testFramework;
     private String gradleVersion;
     private String archive;
@@ -13,6 +14,14 @@ public class ProjectRequest {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDsl() {
+        return dsl;
+    }
+
+    public void setDsl(String dsl) {
+        this.dsl = dsl;
     }
 
     public String getTestFramework() {
@@ -51,6 +60,7 @@ public class ProjectRequest {
         ProjectRequest that = (ProjectRequest) o;
 
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (dsl != null ? !dsl.equals(that.dsl) : that.dsl != null) return false;
         if (testFramework != null ? !testFramework.equals(that.testFramework) : that.testFramework != null)
             return false;
         if (gradleVersion != null ? !gradleVersion.equals(that.gradleVersion) : that.gradleVersion != null)
@@ -61,6 +71,7 @@ public class ProjectRequest {
     @Override
     public int hashCode() {
         int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + (dsl != null ? dsl.hashCode() : 0);
         result = 31 * result + (testFramework != null ? testFramework.hashCode() : 0);
         result = 31 * result + (gradleVersion != null ? gradleVersion.hashCode() : 0);
         result = 31 * result + (archive != null ? archive.hashCode() : 0);

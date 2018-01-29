@@ -35,12 +35,21 @@ public class ToolingApiProjectGenerator implements ProjectGenerator {
         tasks.add("--type");
         tasks.add(projectRequest.getType());
 
+        if (requestsExplicitDsl(projectRequest)) {
+            tasks.add("--dsl");
+            tasks.add(projectRequest.getDsl());
+        }
+
         if (supportsTestFrameworkOption(projectRequest)) {
             tasks.add("--test-framework");
             tasks.add(projectRequest.getTestFramework());
         }
 
         return tasks.stream().toArray(String[]::new);
+    }
+
+    private boolean requestsExplicitDsl(ProjectRequest projectRequest) {
+        return projectRequest.getDsl() != null;
     }
 
     private boolean supportsTestFrameworkOption(ProjectRequest projectRequest) {
