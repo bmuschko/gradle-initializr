@@ -11,6 +11,7 @@ public class DefaultRemoteGradleVersionResolver implements RemoteGradleVersionRe
 
     public static final String BASE_URL = "https://services.gradle.org/versions/";
     public static final String GRADLE_CURRENT_VERSION_URL = BASE_URL + "current";
+    public static final String GRADLE_NIGHTLY_VERSION_URL = BASE_URL + "nightly";
     private final Logger logger = LoggerFactory.getLogger(DefaultRemoteGradleVersionResolver.class);
     private final RestTemplate restTemplate;
 
@@ -25,5 +26,14 @@ public class DefaultRemoteGradleVersionResolver implements RemoteGradleVersionRe
         }
 
         return restTemplate.getForObject(GRADLE_CURRENT_VERSION_URL, String.class);
+    }
+
+    @Override
+    public String getNightlyVersion() {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Retrieving nightly Gradle version via {}", GRADLE_NIGHTLY_VERSION_URL);
+        }
+
+        return restTemplate.getForObject(GRADLE_NIGHTLY_VERSION_URL, String.class);
     }
 }

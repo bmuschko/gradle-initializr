@@ -1,33 +1,48 @@
 package com.bmuschko.gradle.initializr.metadata;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.lang.String.format;
+
 public class GradleVersion implements Comparable<GradleVersion> {
 
+    private static final Pattern VERSION_PATTERN = Pattern.compile("((\\d+)(\\.\\d+)+)(-(\\p{Alpha}+)-(\\d+[a-z]?))?(-(SNAPSHOT|\\d{14}([-+]\\d{4})?))?");
     private final Integer major;
     private final Integer minor;
     private final Integer patch;
+    private final String timestamp;
 
     public GradleVersion(Integer major, Integer minor) {
         this(major, minor, null);
     }
 
     public GradleVersion(Integer major, Integer minor, Integer patch) {
+        this(major, minor, patch, null);
+    }
+
+    public GradleVersion(Integer major, Integer minor, Integer patch, String timestamp) {
         assert major != null : "major version attribute may not be null";
         assert minor != null : "minor version attribute may not be null";
         this.major = major;
         this.minor = minor;
         this.patch = patch;
+        this.timestamp = timestamp;
     }
 
     public GradleVersion(String version) {
-        String[] attributes = version.split("\\.");
+        Matcher matcher = VERSION_PATTERN.matcher(version);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException(format("'%s' is not a valid Gradle version string (examples: '1.0', '1.0-rc-1')", version));
+        }
+
+        String[] attributes = matcher.group(1).split("\\.");
         major = Integer.parseInt(attributes[0]);
         minor = Integer.parseInt(attributes[1]);
+        patch = (attributes.length == 3) ? Integer.parseInt(attributes[2]) : null;
 
-        if (attributes.length == 3) {
-            patch = Integer.parseInt(attributes[2]);
-        } else {
-            patch = null;
-        }
+        String buildTimestamp = matcher.group(8);
+        timestamp = buildTimestamp != null ? buildTimestamp : null;
     }
 
     public Integer getMajor() {
@@ -42,6 +57,10 @@ public class GradleVersion implements Comparable<GradleVersion> {
         return patch;
     }
 
+    public String getTimestamp() {
+        return timestamp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,16 +68,18 @@ public class GradleVersion implements Comparable<GradleVersion> {
 
         GradleVersion that = (GradleVersion) o;
 
-        if (major != null ? !major.equals(that.major) : that.major != null) return false;
-        if (minor != null ? !minor.equals(that.minor) : that.minor != null) return false;
-        return patch != null ? patch.equals(that.patch) : that.patch == null;
+        if (!major.equals(that.major)) return false;
+        if (!minor.equals(that.minor)) return false;
+        if (patch != null ? !patch.equals(that.patch) : that.patch != null) return false;
+        return timestamp != null ? timestamp.equals(that.timestamp) : that.timestamp == null;
     }
 
     @Override
     public int hashCode() {
-        int result = major != null ? major.hashCode() : 0;
-        result = 31 * result + (minor != null ? minor.hashCode() : 0);
+        int result = major.hashCode();
+        result = 31 * result + minor.hashCode();
         result = 31 * result + (patch != null ? patch.hashCode() : 0);
+        result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
         return result;
     }
 
@@ -72,6 +93,11 @@ public class GradleVersion implements Comparable<GradleVersion> {
         if (patch != null) {
             version.append(".");
             version.append(patch);
+        }
+
+        if (timestamp != null) {
+            version.append("-");
+            version.append(timestamp);
         }
 
         return version.toString();

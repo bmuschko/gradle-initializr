@@ -17,7 +17,17 @@ public class JsonGradleVersionReader implements GradleVersionReader {
     @Override
     @Cacheable(cacheNames = "latestFinalGradleVersion", sync = true)
     public GradleVersion getLatestFinalVersion() {
-        JSONObject version = new JSONObject(remoteGradleVersionResolver.getLatestFinalVersion());
+        return parseGradleVersion(remoteGradleVersionResolver.getLatestFinalVersion());
+    }
+
+    @Override
+    @Cacheable(cacheNames = "nightlyGradleVersion", sync = true)
+    public GradleVersion getNightlyVersion() {
+        return parseGradleVersion(remoteGradleVersionResolver.getNightlyVersion());
+    }
+
+    private GradleVersion parseGradleVersion(String json) {
+        JSONObject version = new JSONObject(json);
         return new GradleVersion(version.getString(VERSION_ATTRIBUTE));
     }
 }

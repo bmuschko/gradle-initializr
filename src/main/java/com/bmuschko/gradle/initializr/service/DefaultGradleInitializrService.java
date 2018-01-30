@@ -2,7 +2,6 @@ package com.bmuschko.gradle.initializr.service;
 
 import com.bmuschko.gradle.initializr.archive.Archiver;
 import com.bmuschko.gradle.initializr.generator.ProjectGenerator;
-import com.bmuschko.gradle.initializr.metadata.GradleVersion;
 import com.bmuschko.gradle.initializr.metadata.GradleVersionReader;
 import com.bmuschko.gradle.initializr.model.ProjectRequest;
 import org.slf4j.Logger;
@@ -92,9 +91,10 @@ public class DefaultGradleInitializrService implements GradleInitializrService {
     }
 
     @Override
-    public List<GradleVersion> getGradleVersions() {
-        List<GradleVersion> gradleVersions = new ArrayList<>();
-        gradleVersions.add(gradleVersionReader.getLatestFinalVersion());
-        return gradleVersions;
+    public List<AnnotatedGradleVersion> getGradleVersions() {
+        List<AnnotatedGradleVersion> annotatedGradleVersions = new ArrayList<>();
+        annotatedGradleVersions.add(new AnnotatedGradleVersion(gradleVersionReader.getLatestFinalVersion()));
+        annotatedGradleVersions.add(new AnnotatedGradleVersion(gradleVersionReader.getNightlyVersion(), "nightly"));
+        return annotatedGradleVersions;
     }
 }
