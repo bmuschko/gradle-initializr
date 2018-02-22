@@ -1,6 +1,5 @@
 package com.bmuschko.gradle.initializr.web
 
-import com.bmuschko.gradle.initializr.metadata.GradleVersion
 import com.bmuschko.gradle.initializr.model.ProjectRequest
 import com.bmuschko.gradle.initializr.service.AnnotatedGradleVersion
 import com.bmuschko.gradle.initializr.service.GradleInitializrService
@@ -29,8 +28,8 @@ class GradleInitializrControllerIntegrationTest {
 
     @Test
     void "can forward to home page"() {
-        def gradleVersions = [new AnnotatedGradleVersion(new GradleVersion(1, 2)),
-                              new AnnotatedGradleVersion(new GradleVersion(1, 3))]
+        def gradleVersions = [new AnnotatedGradleVersion('1.2'),
+                              new AnnotatedGradleVersion('1.3')]
         given(gradleInitializrService.getGradleVersions()).willReturn(gradleVersions)
         mvc.perform(get('/'))
             .andExpect(status().isOk())

@@ -5,7 +5,7 @@ import spock.lang.Subject
 
 class JsonGradleVersionReaderTest extends Specification {
 
-    private static final GradleVersion GRADLE_4_5 = new GradleVersion(4, 5)
+    private static final String GRADLE_4_5 = '4.5'
     def remoteGradleVersionResolver = Mock(RemoteGradleVersionResolver)
 
     @Subject

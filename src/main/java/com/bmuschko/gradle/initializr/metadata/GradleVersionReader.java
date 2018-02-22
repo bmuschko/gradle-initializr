@@ -2,6 +2,7 @@ package com.bmuschko.gradle.initializr.metadata;
 
 public interface GradleVersionReader {
 
-    GradleVersion getLatestFinalVersion();
-    GradleVersion getNightlyVersion();
+    String getLatestFinalVersion();
+    String getReleaseCandidateVersion();
+    String getNightlyVersion();
 }

@@ -1,17 +1,15 @@
 package com.bmuschko.gradle.initializr.service;
 
-import com.bmuschko.gradle.initializr.metadata.GradleVersion;
-
 public class AnnotatedGradleVersion {
 
-    private final GradleVersion gradleVersion;
+    private final String gradleVersion;
     private final String description;
 
-    public AnnotatedGradleVersion(GradleVersion gradleVersion) {
+    public AnnotatedGradleVersion(String gradleVersion) {
         this(gradleVersion, null);
     }
 
-    public AnnotatedGradleVersion(GradleVersion gradleVersion, String description) {
+    public AnnotatedGradleVersion(String gradleVersion, String description) {
         this.gradleVersion = gradleVersion;
         this.description = description;
     }

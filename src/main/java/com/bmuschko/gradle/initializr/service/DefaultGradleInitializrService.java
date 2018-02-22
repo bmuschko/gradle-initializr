@@ -93,8 +93,19 @@ public class DefaultGradleInitializrService implements GradleInitializrService {
     @Override
     public List<AnnotatedGradleVersion> getGradleVersions() {
         List<AnnotatedGradleVersion> annotatedGradleVersions = new ArrayList<>();
-        annotatedGradleVersions.add(new AnnotatedGradleVersion(gradleVersionReader.getLatestFinalVersion()));
-        annotatedGradleVersions.add(new AnnotatedGradleVersion(gradleVersionReader.getNightlyVersion(), "nightly"));
+        String latestFinal = gradleVersionReader.getLatestFinalVersion();
+        String releaseCandidate = gradleVersionReader.getReleaseCandidateVersion();
+        String nightly = gradleVersionReader.getNightlyVersion();
+        annotatedGradleVersions.add(new AnnotatedGradleVersion(latestFinal));
+
+        if (releaseCandidate != null) {
+            annotatedGradleVersions.add(new AnnotatedGradleVersion(releaseCandidate, "release candidate"));
+        }
+
+        if (nightly != null) {
+            annotatedGradleVersions.add(new AnnotatedGradleVersion(nightly, "nightly"));
+        }
+
         return annotatedGradleVersions;
     }
 }
