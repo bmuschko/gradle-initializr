@@ -19,16 +19,16 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-cache'
-    compile 'org.springframework.boot:spring-boot-starter-mustache'
-    compile 'org.gradle:gradle-tooling-api:4.7'
-    compile 'org.apache.ant:ant:1.10.1'
-    compile 'org.json:json:20180130'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    implementation 'org.gradle:gradle-tooling-api:4.7'
+    implementation 'org.apache.ant:ant:1.10.1'
+    implementation 'org.json:json:20180130'
     runtime 'com.github.ben-manes.caffeine:caffeine'
-    testCompile 'org.codehaus.groovy:groovy:2.4.14'
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
-    integrationTestCompile 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.codehaus.groovy:groovy:2.4.14'
+    testImplementation 'org.spockframework:spock-core:1.1-groovy-2.4'
+    integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
 }
