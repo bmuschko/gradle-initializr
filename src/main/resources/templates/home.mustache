@@ -26,6 +26,8 @@
                             <option value="java-library">Java Library</option>
                             <option value="groovy-application">Groovy Application</option>
                             <option value="groovy-library">Groovy Library</option>
+                            <option value="kotlin-application">Kotlin Application</option>
+                            <option value="kotlin-library">Kotlin Library</option>
                             <option value="scala-library">Scala Library</option>
                         </select>
                     </div>
@@ -66,6 +68,18 @@
                             <option value="zip" selected>zip</option>
                             <option value="tgz">tar.gz</option>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="archive" class="col-sm-2 col-form-label">Project name</label>
+                    <div class="col-sm-2">
+                        <input tabindex="6" class="form-control" id="projectName" name="projectName">
+                    </div>
+                </div>
+                <div class="form-group row" id="packageNameRow" style="display: none;">
+                    <label for="archive" class="col-sm-2 col-form-label">Package</label>
+                    <div class="col-sm-2">
+                        <input tabindex="7" class="form-control" id="packageName" name="packageName">
                     </div>
                 </div>
                 <button tabindex="6" name="generate-project" type="submit" class="btn-lg btn-primary" role="button">

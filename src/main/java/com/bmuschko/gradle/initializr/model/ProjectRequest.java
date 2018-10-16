@@ -1,5 +1,7 @@
 package com.bmuschko.gradle.initializr.model;
 
+import java.util.Objects;
+
 public class ProjectRequest {
 
     private String type;
@@ -7,6 +9,8 @@ public class ProjectRequest {
     private String testFramework;
     private String gradleVersion;
     private String archive;
+    private String projectName;
+    private String packageName;
 
     public String getType() {
         return type;
@@ -48,6 +52,22 @@ public class ProjectRequest {
         this.archive = archive;
     }
 
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
     public boolean isJavaType() {
         return "java-application".equals(type) || "java-library".equals(type);
     }
@@ -55,26 +75,19 @@ public class ProjectRequest {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof ProjectRequest)) return false;
         ProjectRequest that = (ProjectRequest) o;
-
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (dsl != null ? !dsl.equals(that.dsl) : that.dsl != null) return false;
-        if (testFramework != null ? !testFramework.equals(that.testFramework) : that.testFramework != null)
-            return false;
-        if (gradleVersion != null ? !gradleVersion.equals(that.gradleVersion) : that.gradleVersion != null)
-            return false;
-        return archive != null ? archive.equals(that.archive) : that.archive == null;
+        return Objects.equals(type, that.type) &&
+                Objects.equals(dsl, that.dsl) &&
+                Objects.equals(testFramework, that.testFramework) &&
+                Objects.equals(gradleVersion, that.gradleVersion) &&
+                Objects.equals(archive, that.archive) &&
+                Objects.equals(projectName, that.projectName) &&
+                Objects.equals(packageName, that.packageName);
     }
 
     @Override
     public int hashCode() {
-        int result = type != null ? type.hashCode() : 0;
-        result = 31 * result + (dsl != null ? dsl.hashCode() : 0);
-        result = 31 * result + (testFramework != null ? testFramework.hashCode() : 0);
-        result = 31 * result + (gradleVersion != null ? gradleVersion.hashCode() : 0);
-        result = 31 * result + (archive != null ? archive.hashCode() : 0);
-        return result;
+        return Objects.hash(type, dsl, testFramework, gradleVersion, archive, projectName, packageName);
     }
 }

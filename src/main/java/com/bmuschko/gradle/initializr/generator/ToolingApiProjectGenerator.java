@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ToolingApiProjectGenerator implements ProjectGenerator {
@@ -45,14 +46,37 @@ public class ToolingApiProjectGenerator implements ProjectGenerator {
             tasks.add(projectRequest.getTestFramework());
         }
 
+        if (providesProjectName(projectRequest)) {
+            tasks.add("--project-name");
+            tasks.add(projectRequest.getProjectName());
+        }
+
+        if (providesPackageName(projectRequest)) {
+            tasks.add("--package");
+            tasks.add(projectRequest.getPackageName());
+        }
+
         return tasks.stream().toArray(String[]::new);
     }
 
-    private boolean requestsExplicitDsl(ProjectRequest projectRequest) {
-        return projectRequest.getDsl() != null;
+    private static boolean requestsExplicitDsl(ProjectRequest projectRequest) {
+        return isProvidedValue(projectRequest.getDsl());
     }
 
-    private boolean supportsTestFrameworkOption(ProjectRequest projectRequest) {
-        return projectRequest.isJavaType() && projectRequest.getTestFramework() != null && !projectRequest.getTestFramework().isEmpty();
+    private static boolean supportsTestFrameworkOption(ProjectRequest projectRequest) {
+        return projectRequest.isJavaType() && isProvidedValue(projectRequest.getTestFramework());
+    }
+
+    private static boolean providesProjectName(ProjectRequest projectRequest) {
+        return isProvidedValue(projectRequest.getProjectName());
+    }
+
+    private static boolean providesPackageName(ProjectRequest projectRequest) {
+        return isProvidedValue(projectRequest.getPackageName());
+    }
+
+    private static boolean isProvidedValue(String value) {
+        String nullableValue = Optional.ofNullable(value).orElse("");
+        return !nullableValue.trim().isEmpty();
     }
 }

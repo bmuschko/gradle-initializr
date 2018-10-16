@@ -6,6 +6,12 @@ $(document).ready(function() {
         } else {
             toggleTestFrameworkVisibility(false);
         }
+
+        if (typeValue === 'basic') {
+            togglePackageNameVisibility(false);
+        } else {
+            togglePackageNameVisibility(true);
+        }
     });
 
     function toggleTestFrameworkVisibility(show) {
@@ -15,6 +21,16 @@ $(document).ready(function() {
             testFrameworkRow.show();
         } else {
             testFrameworkRow.hide();
+        }
+    }
+
+    function togglePackageNameVisibility(show) {
+        var packageNameRow = $('#packageNameRow');
+
+        if (show) {
+            packageNameRow.show();
+        } else {
+            packageNameRow.hide();
         }
     }
 });

@@ -17,7 +17,7 @@ public class AnnotatedGradleVersion {
     @Override
     public String toString() {
         StringBuilder annotated = new StringBuilder();
-        annotated.append(gradleVersion.toString());
+        annotated.append(gradleVersion);
 
         if (description != null) {
             annotated.append(" (").append(description).append(")");
