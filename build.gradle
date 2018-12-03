@@ -25,7 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
-    implementation 'org.gradle:gradle-tooling-api:5.0-20180930235830+0000'
+    implementation 'org.gradle:gradle-tooling-api:5.0'
     implementation 'org.apache.ant:ant:1.10.1'
     implementation 'org.json:json:20180130'
     runtime 'com.github.ben-manes.caffeine:caffeine'
