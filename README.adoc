@@ -19,6 +19,8 @@ Additionally, the following parameters can be specified.
 |=======
 |Parameter       |Description
 |`type`          |The type of project to generate
+|`projectName`   |The name of the project to generate
+|`packageName`   |The package of the project to generate (only applies to JVM projects)
 |`dsl`           |The DSL to use for the generate project
 |`gradleVersion` |The Gradle version used for the Wrapper
 |`testFramework` |The test framework used for some of the project types
@@ -40,6 +42,8 @@ The table below presents the available project types by providing the parameter 
 |`java-library`       |A Java library project
 |`groovy-application` |A Groovy application project
 |`groovy-library`     |A Groovy library project
+|`kotlin-application` |A Kotlin application project
+|`kotlin-library`     |A Kotlin library project
 |`scala-library`      |A Scala library project
 |=======
 
