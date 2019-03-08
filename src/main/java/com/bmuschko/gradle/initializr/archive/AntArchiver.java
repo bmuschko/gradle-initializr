@@ -26,6 +26,7 @@ public class AntArchiver implements Archiver {
         zip.setDefaultexcludes(false);
         ZipFileSet set = new ZipFileSet();
         set.setDir(sourceDir);
+        set.setDefaultexcludes(false);
         set.setIncludes(ALL_FILES_RECURSIVELY);
         set.setExcludes(HIDDEN_GRADLE_DIR);
         zip.addFileset(set);
@@ -45,6 +46,7 @@ public class AntArchiver implements Archiver {
         tar.setDefaultexcludes(false);
         TarFileSet set = tar.createTarFileSet();
         set.setDir(sourceDir);
+        set.setDefaultexcludes(false);
         set.setIncludes(ALL_FILES_RECURSIVELY);
         set.setExcludes(HIDDEN_GRADLE_DIR);
         set.setDefaultexcludes(false);

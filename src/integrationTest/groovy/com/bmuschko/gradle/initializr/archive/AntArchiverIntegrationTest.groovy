@@ -1,9 +1,15 @@
 package com.bmuschko.gradle.initializr.archive
 
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import spock.lang.Specification
 import spock.lang.Subject
+
+import java.util.zip.GZIPInputStream
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
 
 class AntArchiverIntegrationTest extends Specification {
 
@@ -16,7 +22,15 @@ class AntArchiverIntegrationTest extends Specification {
     @Subject
     def antArchiver = new AntArchiver()
 
+    private static final List<String> ALL_FILES = ['.gitignore',
+                                                   'build.gradle',
+                                                   'settings.gradle',
+                                                   'gradle/wrapper/gradle-wrapper.jar',
+                                                   'gradle/wrapper/gradle-wrapper.properties',
+                                                   'src/main/java/Main.java']
+
     def setup() {
+        testProjectDir.newFile('.gitignore')
         testProjectDir.newFile('build.gradle')
         testProjectDir.newFile('settings.gradle')
         def wrapperDir = testProjectDir.newFolder('gradle', 'wrapper')
@@ -36,6 +50,9 @@ class AntArchiverIntegrationTest extends Specification {
         then:
         archiveFile.isFile()
         archiveFile.length() > 0
+        List<String> allFiles = getFilesInZipArchive(archiveFile)
+        allFiles.size() == 6
+        allFiles.containsAll(ALL_FILES)
     }
 
     def "can generate TAR file"() {
@@ -48,5 +65,41 @@ class AntArchiverIntegrationTest extends Specification {
         then:
         archiveFile.isFile()
         archiveFile.length() > 0
+        List<String> allFiles = getFilesInTarGzArchive(archiveFile)
+        allFiles.size() == 6
+        allFiles.containsAll(ALL_FILES)
+    }
+
+    static List<File> getFilesInZipArchive(File archiveFile) {
+        List<String> allFiles = []
+
+        ZipFile zipFile = new ZipFile(archiveFile)
+        Enumeration<? extends ZipEntry> entries = zipFile.entries()
+
+        while (entries.hasMoreElements()) {
+            ZipEntry entry = entries.nextElement()
+            if (!entry.isDirectory()) {
+                allFiles << entry.name
+            }
+        }
+
+        allFiles
+    }
+
+    static List<File> getFilesInTarGzArchive(File archiveFile) {
+        List<String> allFiles = []
+
+        FileInputStream fileInputStream = new FileInputStream(archiveFile)
+        GZIPInputStream gzipInputStream = new GZIPInputStream(fileInputStream)
+        TarArchiveInputStream tarArchiveInputStream = new TarArchiveInputStream(gzipInputStream)
+        TarArchiveEntry entry
+
+        while (entry = tarArchiveInputStream.getNextTarEntry()) {
+            if (!entry.isDirectory()) {
+                allFiles << entry.name
+            }
+        }
+
+        allFiles
     }
 }

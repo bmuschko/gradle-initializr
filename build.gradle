@@ -30,6 +30,7 @@ dependencies {
     implementation 'org.json:json:20180130'
     runtime 'com.github.ben-manes.caffeine:caffeine'
     testImplementation 'org.codehaus.groovy:groovy:2.4.15'
+    testImplementation 'org.apache.commons:commons-compress:1.18'
     testImplementation 'org.spockframework:spock-core:1.1-groovy-2.4'
     integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
