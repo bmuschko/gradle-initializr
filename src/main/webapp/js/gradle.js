@@ -7,7 +7,7 @@ $(document).ready(function() {
             toggleTestFrameworkVisibility(false);
         }
 
-        if (typeValue === 'basic') {
+        if (typeValue === 'basic' || typeValue === 'cpp-application' || typeValue === 'cpp-library') {
             togglePackageNameVisibility(false);
         } else {
             togglePackageNameVisibility(true);
