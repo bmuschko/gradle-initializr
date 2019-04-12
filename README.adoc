@@ -38,6 +38,8 @@ The table below presents the available project types by providing the parameter 
 |=======
 |Value                |Description
 |`basic`              |The most-basic Gradle project
+|`cpp-application`    |A C++ application project
+|`cpp-library`        |A C++ library project
 |`java-application`   |A Java application project
 |`java-library`       |A Java library project
 |`groovy-application` |A Groovy application project
