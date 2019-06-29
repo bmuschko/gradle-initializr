@@ -36,17 +36,20 @@ The table below presents the available project types by providing the parameter 
 
 [options="header"]
 |=======
-|Value                |Description
-|`basic`              |The most-basic Gradle project
-|`cpp-application`    |A C++ application project
-|`cpp-library`        |A C++ library project
-|`java-application`   |A Java application project
-|`java-library`       |A Java library project
-|`groovy-application` |A Groovy application project
-|`groovy-library`     |A Groovy library project
-|`kotlin-application` |A Kotlin application project
-|`kotlin-library`     |A Kotlin library project
-|`scala-library`      |A Scala library project
+|Value                  |Description
+|`basic`                |The most-basic Gradle project
+|`cpp-application`      |A C++ application project
+|`cpp-library`          |A C++ library project
+|`java-application`     |A Java application project
+|`java-library`         |A Java library project
+|`java-gradle-plugin`   |A Gradle plugin project in Java
+|`groovy-application`   |A Groovy application project
+|`groovy-library`       |A Groovy library project
+|`groovy-gradle-plugin` |A Gradle plugin project in Groovy
+|`kotlin-application`   |A Kotlin application project
+|`kotlin-library`       |A Kotlin library project
+|`kotlin-gradle-plugin` |A Gradle plugin project in Kotlin
+|`scala-library`        |A Scala library project
 |=======
 
 === Specifying the project DSL
@@ -70,7 +73,8 @@ The following test frameworks can be selected for the project types `java-applic
 
 [options="header"]
 |=======
-|Value    |Description
-|`testng` |link:http://testng.org/[TestNG]
-|`spock`  |link:http://spockframework.org/[Spock framework]
+|Value           |Description
+|`junit-jupiter` |link:https://junit.org/junit5/[JUnit Jupiter]
+|`testng`        |link:http://testng.org/[TestNG]
+|`spock`         |link:http://spockframework.org/[Spock framework]
 |=======
