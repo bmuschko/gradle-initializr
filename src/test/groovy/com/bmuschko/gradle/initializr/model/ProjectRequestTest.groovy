@@ -2,13 +2,15 @@ package com.bmuschko.gradle.initializr.model
 
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.Unroll
 
 class ProjectRequestTest extends Specification {
 
     @Subject
     def projectRequest = new ProjectRequest()
 
-    def "can indicate Java type"() {
+    @Unroll
+    def "can indicate Java type for '#type'"() {
         given:
         projectRequest.type = type
 
