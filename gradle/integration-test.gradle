@@ -16,3 +16,10 @@ task integrationTest(type: Test) {
 }
 
 check.dependsOn integrationTest
+
+task jacocoIntegrationTestReport(type: JacocoReport) {
+    group = 'verification'
+    description = 'Verifies code coverage metrics based on specified rules for the integrationTest task.'
+    executionData integrationTest
+    sourceSets sourceSets.integrationTest
+}
