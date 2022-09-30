@@ -1,4 +1,4 @@
-= Gradle Initializer image:https://travis-ci.org/bmuschko/gradle-initializr.svg?branch=master["Build Status", link="https://travis-ci.org/bmuschko/gradle-initializr"]
+= Gradle Initializer image:https://github.com/bmuschko/gradle-initializr/workflows/Build%20and%20Release%20%5BLinux%5D/badge.svg["Build Status", link="https://github.com/bmuschko/gradle-initializr/actions/workflows/linux-build-release.yml"]
 
 Gradle Initializer provides a web-based service for generating quickstart Gradle projects. The application provides two different interfaces: a web-based UI and an endpoint for generating projects via `curl`. Under the covers, Gradle Initializer uses the link:https://docs.gradle.org/current/userguide/embedding.html[Tooling API] to invoke the functionality of the link:https://docs.gradle.org/current/userguide/build_init_plugin.html[Build Init plugin]. A quickstart project is bundled and downloaded as ZIP or TAR file.
 
