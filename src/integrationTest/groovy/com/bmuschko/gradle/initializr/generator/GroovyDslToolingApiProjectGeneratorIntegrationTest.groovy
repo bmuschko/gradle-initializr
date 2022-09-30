@@ -9,8 +9,7 @@ class GroovyDslToolingApiProjectGeneratorIntegrationTest extends AbstractTooling
 
     @Override
     void assertGeneratedFiles() {
-        assert new File(testProjectDir.root, 'build.gradle').isFile()
-        assert new File(testProjectDir.root, 'settings.gradle').isFile()
+        assert new File(testProjectDir, 'settings.gradle').isFile()
         assertGradleDirectory()
     }
 }

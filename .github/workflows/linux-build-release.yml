@@ -1,0 +1,35 @@
+name: Build and Release [Linux]
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Compilation
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: classes
+      - name: Unit tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test
+      - name: Integration tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: integrationTest
+      - name: Assemble artifacts
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: assemble
+      - name: Store artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: gradle-initializr.jar
+          path: build/libs/*.jar

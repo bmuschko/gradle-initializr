@@ -9,8 +9,7 @@ class KotlinDslToolingApiProjectGeneratorIntegrationTest extends AbstractTooling
 
     @Override
     void assertGeneratedFiles() {
-        assert new File(testProjectDir.root, 'build.gradle.kts').isFile()
-        assert new File(testProjectDir.root, 'settings.gradle.kts').isFile()
+        assert new File(testProjectDir, 'settings.gradle.kts').isFile()
         assertGradleDirectory()
     }
 }

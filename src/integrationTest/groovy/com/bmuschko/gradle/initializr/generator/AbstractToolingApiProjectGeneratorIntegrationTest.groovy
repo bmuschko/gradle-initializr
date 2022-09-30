@@ -1,16 +1,15 @@
 package com.bmuschko.gradle.initializr.generator
 
 import com.bmuschko.gradle.initializr.model.ProjectRequest
-import org.junit.Rule
-import org.junit.rules.TemporaryFolder
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.TempDir
 import spock.lang.Unroll
 
 abstract class AbstractToolingApiProjectGeneratorIntegrationTest extends Specification {
 
-    @Rule
-    TemporaryFolder testProjectDir = new TemporaryFolder()
+    @TempDir
+    File testProjectDir
 
     @Subject
     def toolingApiProjectGenerator = new ToolingApiProjectGenerator()
@@ -23,7 +22,7 @@ abstract class AbstractToolingApiProjectGeneratorIntegrationTest extends Specifi
         projectRequest.dsl = getDsl()
 
         when:
-        toolingApiProjectGenerator.generate(testProjectDir.root, projectRequest)
+        toolingApiProjectGenerator.generate(testProjectDir, projectRequest)
 
         then:
         assertGeneratedFiles()
@@ -41,7 +40,7 @@ abstract class AbstractToolingApiProjectGeneratorIntegrationTest extends Specifi
         projectRequest.dsl = getDsl()
 
         when:
-        toolingApiProjectGenerator.generate(testProjectDir.root, projectRequest)
+        toolingApiProjectGenerator.generate(testProjectDir, projectRequest)
 
         then:
         assertGeneratedFiles()
@@ -59,7 +58,7 @@ abstract class AbstractToolingApiProjectGeneratorIntegrationTest extends Specifi
         projectRequest.dsl = getDsl()
 
         when:
-        toolingApiProjectGenerator.generate(testProjectDir.root, projectRequest)
+        toolingApiProjectGenerator.generate(testProjectDir, projectRequest)
 
         then:
         assertGeneratedFiles()
@@ -72,6 +71,6 @@ abstract class AbstractToolingApiProjectGeneratorIntegrationTest extends Specifi
     abstract void assertGeneratedFiles()
 
     void assertGradleDirectory() {
-        assert new File(testProjectDir.root, 'gradle').isDirectory()
+        assert new File(testProjectDir, 'gradle').isDirectory()
     }
 }
